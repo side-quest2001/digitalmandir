@@ -52,10 +52,35 @@ export type TempleStream = {
   location: string;
   headline: string;
   nextAarti: string;
-  liveUrl: string;
+  channelId?: string;
+  channelHandle: string;
+  channelUrl: string;
+  fallbackLiveUrl: string;
   channelLabel: string;
   accent: string;
   glow: string;
+  isLive?: boolean;
+  liveVideoId?: string;
+  liveTitle?: string;
+  thumbnailUrl?: string;
+  lastCheckedAt?: string;
+};
+
+export type YouTubeLiveStatusError =
+  | 'missing_api_key'
+  | 'channel_not_found'
+  | 'lookup_failed';
+
+export type YouTubeLiveStatus = {
+  templeId: string;
+  channelId?: string;
+  isLive: boolean;
+  liveVideoId?: string;
+  liveTitle?: string;
+  thumbnailUrl?: string;
+  publishedAt?: string;
+  lastCheckedAt: string;
+  error?: YouTubeLiveStatusError;
 };
 
 export type AuthState = {

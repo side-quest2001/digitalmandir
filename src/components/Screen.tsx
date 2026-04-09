@@ -1,5 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { PropsWithChildren, ReactElement, ReactNode } from 'react';
+import type { RefreshControlProps, StyleProp, ViewStyle } from 'react-native';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -8,13 +9,15 @@ import { palette } from '../theme/palette';
 type ScreenProps = PropsWithChildren<{
   scroll?: boolean;
   footer?: ReactNode;
-  contentStyle?: object;
+  contentStyle?: StyleProp<ViewStyle>;
+  refreshControl?: ReactElement<RefreshControlProps>;
 }>;
 
-export function Screen({ children, scroll, footer, contentStyle }: ScreenProps) {
+export function Screen({ children, scroll, footer, contentStyle, refreshControl }: ScreenProps) {
   const content = scroll ? (
     <ScrollView
       contentContainerStyle={[styles.scrollContent, contentStyle]}
+      refreshControl={refreshControl}
       showsVerticalScrollIndicator={false}
     >
       {children}
